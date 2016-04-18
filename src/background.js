@@ -2,6 +2,7 @@ const extensions = new Map();
 
 chrome.runtime.onMessageExternal.addListener(extensionMessage);
 chrome.runtime.onMessage.addListener(pageMessage);
+chrome.management.onDisabled.addListener(extensionDisabled);
 
 function extensionMessage(message, sender)
 {
@@ -11,6 +12,11 @@ function extensionMessage(message, sender)
 			extensions.set(sender.id, {name: message.name});
 			break;
 	}
+}
+
+function extensionDisabled(extension)
+{
+	extensions.delete(extension.id);
 }
 
 function pageMessage(message, sender, respond)
