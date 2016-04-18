@@ -26,7 +26,7 @@ function pageMessage(message, sender, respond)
 function transform(text)
 {
 	let promise = Promise.resolve(text);
-	for (let extension of extensions.keys())
+	for (const extension of extensions.keys())
 	{
 		promise = promise.then(text => new Promise(resolve =>
 		{
